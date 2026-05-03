@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cfuyqpw08m2ey"]
+
+[ext_resource type="Texture2D" uid="uid://dmc71b4hkxn5c" path="res://Assets/Dead Forest Asset Pack/Dead Forest Asset Pack/Tiles and BG/DeadForest Tileset32x32.png" id="1_h7rxe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4us8c"]
+size = Vector2(96, 30.5)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" unique_id=646226060]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1138912953]
+position = Vector2(106, -33)
+texture = ExtResource("1_h7rxe")
+region_enabled = true
+region_rect = Rect2(223.97328, 29.134338, 95.49559, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2138050923]
+position = Vector2(106, -33)
+shape = SubResource("RectangleShape2D_4us8c")

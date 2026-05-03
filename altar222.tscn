@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://30qdnimm75oq"]
+
+[ext_resource type="Script" uid="uid://eaq3erihps1a" path="res://altar.gd" id="1_8myik"]
+[ext_resource type="Texture2D" uid="uid://stryh2deltwa" path="res://Assets/WhatsApp_Image_2026-05-03_at_9.36.46_AM-removebg-preview.png" id="2_vpg40"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_efrdk"]
+size = Vector2(64, 57)
+
+[node name="Area2D" type="Area2D" unique_id=633116142]
+script = ExtResource("1_8myik")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1657196494]
+position = Vector2(177, 143)
+scale = Vector2(0.344, 0.318)
+texture = ExtResource("2_vpg40")
+
+[node name="Label" type="Label" parent="." unique_id=1956889107]
+offset_left = 119.0
+offset_top = 73.0
+offset_right = 255.0
+offset_bottom = 96.0
+text = "[E] To interact"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2094681316]
+position = Vector2(183, 136)
+shape = SubResource("RectangleShape2D_efrdk")
+
+[node name="Timer" type="Timer" parent="." unique_id=1786616688]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
