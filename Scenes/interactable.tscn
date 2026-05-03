@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cymjcsn0m3gma"]
+
+[ext_resource type="Script" uid="uid://di172krtqef64" path="res://area_2d.gd" id="1_pmsje"]
+[ext_resource type="Texture2D" uid="uid://40qrlqkky7bb" path="res://Assets/Screenshot_2026-05-02_160452-removebg-preview.png" id="2_pmsje"]
+[ext_resource type="FontFile" uid="uid://dba2huu3y52jw" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_73reo"]
+[ext_resource type="Texture2D" uid="uid://bkds7fmw0u5nt" path="res://Assets/Gear 1 - Bronze_spritesheet.png" id="3_x0tmm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k246y"]
+atlas = ExtResource("3_x0tmm")
+region = Rect2(0, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1erql"]
+atlas = ExtResource("3_x0tmm")
+region = Rect2(43, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exs7o"]
+atlas = ExtResource("3_x0tmm")
+region = Rect2(86, 0, 43, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4y7p"]
+atlas = ExtResource("3_x0tmm")
+region = Rect2(129, 0, 43, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_co4dy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k246y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1erql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exs7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4y7p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmsje"]
+size = Vector2(34, 64)
+
+[sub_resource type="Animation" id="Animation_73reo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_x0tmm"]
+resource_name = "interact"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.0594885]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k246y"]
+_data = {
+&"RESET": SubResource("Animation_73reo"),
+&"interact": SubResource("Animation_x0tmm")
+}
+
+[sub_resource type="Gradient" id="Gradient_x0tmm"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k246y"]
+gradient = SubResource("Gradient_x0tmm")
+width = 257
+
+[node name="Area2D" type="Area2D" unique_id=1612522108]
+position = Vector2(-33, 15)
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_pmsje")
+
+[node name="Label" type="Label" parent="." unique_id=155770562]
+z_index = 20
+offset_left = 13.0
+offset_top = -128.0
+offset_right = 211.0
+offset_bottom = -105.0
+theme_override_colors/font_color = Color(0.03137255, 0.047058824, 0.05490196, 1)
+theme_override_fonts/font = ExtResource("3_73reo")
+text = "[E] To Interact "
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1574758341]
+position = Vector2(93.673996, -67.76255)
+scale = Vector2(0.80586046, 0.82616496)
+sprite_frames = SubResource("SpriteFrames_co4dy")
+frame = 2
+frame_progress = 0.36262035
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2045272910]
+position = Vector2(94, -64)
+shape = SubResource("RectangleShape2D_pmsje")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1440479523]
+root_node = NodePath("../CollisionShape2D")
+libraries/ = SubResource("AnimationLibrary_k246y")
+
+[node name="Timer" type="Timer" parent="." unique_id=802737404]
+wait_time = 1.4779999999999998
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1804861114]
+position = Vector2(296, -120.99999)
+scale = Vector2(0.26519915, 0.27629063)
+texture = ExtResource("2_pmsje")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=314631321]
+visible = false
+position = Vector2(3440, 2805)
+rotation = 0.6320151
+scale = Vector2(19.6803, 3237.1865)
+skew = -1.266835
+color = Color(1, 1, 0, 1)
+energy = 10.5
+range_z_min = -1117
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.5
+texture = SubResource("GradientTexture1D_k246y")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

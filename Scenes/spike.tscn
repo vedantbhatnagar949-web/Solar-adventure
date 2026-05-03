@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cpedarrp7lvpx"]
+
+[ext_resource type="Texture2D" uid="uid://3ptqn63btqh4" path="res://Assets/thorns.png" id="1_1hotg"]
+[ext_resource type="PackedScene" uid="uid://u3vpmtdg4pga" path="res://Scenes/killzone.tscn" id="2_2mnih"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhxds"]
+size = Vector2(11, 23)
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1387955135]
+position = Vector2(124, 77)
+texture = ExtResource("1_1hotg")
+region_enabled = true
+region_rect = Rect2(0, 9.127726, 17.152756, 43.652428)
+
+[node name="Killzone" parent="." unique_id=1244327503 instance=ExtResource("2_2mnih")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=698175012]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_fhxds")
